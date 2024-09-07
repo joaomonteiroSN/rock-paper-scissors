@@ -12,7 +12,6 @@ const arrayAnswers = [
 function getComputerChoice() {
     const arrayChoices = ["Rock", "Paper", "Scissors"];
     const random = (Math.random() * 2).toFixed();
-
     return arrayChoices[random].toLowerCase();
 }
 
@@ -107,4 +106,11 @@ function game() {
     // console.log("escolha do PLAYER: " + playerSelection);
     // console.log("escolha do COMPUTADOR: " + computerChoise);
     // console.log("quem ganhou o ROUND: " + roundWinner);
+}
+
+function endGame(){
+    playerPoints = 0;
+    computerPoints = 0;
+    empate = 0;
+    roundResult.innerText = "-";
 }
