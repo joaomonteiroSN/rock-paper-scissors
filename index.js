@@ -1,4 +1,3 @@
-
 //Array de respostas
 const arrayAnswers = [
     "Empate/draw",
@@ -27,42 +26,35 @@ function round(playerSelection, computerSelection) {
     if (playerSelection == computerSelection) {
         resultado = arrayAnswers[0];
         empate++;
-        currentScores.innerText = `Pontos do jogador: ${playerPoints} e Pontos do computador: ${computerPoints}.`
         return resultado;
     } else if (playerSelection == "rock" && computerSelection == "scissors") {
         resultado = arrayAnswers[1];
         playerPoints++;
-        currentScores.innerText = `Pontos do jogador: ${playerPoints} e Pontos do computador: ${computerPoints}.`
         return resultado;
     } else if (playerSelection == "paper" && computerSelection == "rock") {
         resultado = arrayAnswers[2];
         playerPoints++;
-        currentScores.innerText = `Pontos do jogador: ${playerPoints} e Pontos do computador: ${computerPoints}.`
         return resultado;
     } else if (playerSelection == "paper" && computerSelection == "scissors") {
         resultado = arrayAnswers[3];
         computerPoints++
-        currentScores.innerText = `Pontos do jogador: ${playerPoints} e Pontos do computador: ${computerPoints}.`
         return resultado;
     } else if (playerSelection == "scissors" && computerSelection == "paper") {
         resultado = arrayAnswers[4];
         playerPoints++;
-        currentScores.innerText = `Pontos do jogador: ${playerPoints} e Pontos do computador: ${computerPoints}.`
         return resultado;
     } else if (playerSelection == "scissors" && computerSelection == "rock") {
         resultado = arrayAnswers[5];
         computerPoints++;
-        currentScores.innerText = `Pontos do jogador: ${playerPoints} e Pontos do computador: ${computerPoints}.`
         return resultado;
     } else {
         resultado = arrayAnswers[6];
         computerPoints++;
-        currentScores.innerText = `Pontos do jogador: ${playerPoints} e Pontos do computador: ${computerPoints}.`
         return resultado;
     }
 }
 
-//Event handler to buttons
+//Event handler for buttons
 
 let playerSelection;
 let computerChoise;
@@ -70,9 +62,9 @@ let roundWinner;
 let counter = 0;
 
 const container = document.querySelector(".container");
-const roundResult = document.createElement("p");
-const currentScores = document.createElement("p");
-
+const roundResult = document.querySelector(".roundResult");
+const playerScoreEl = document.querySelector(".playerScore > span");
+const computerScoreEl = document.querySelector(".computerScore > span");
 
 let button = document.querySelector("#playerChoises");
 button.addEventListener('click', (event) => {
@@ -82,27 +74,37 @@ button.addEventListener('click', (event) => {
     if (target.id === 'paper') {
         playerSelection = "paper";
         computerChoise = getComputerChoice();
-        return roundResult.innerText = round(playerSelection, computerChoise);
+        roundResult.innerText = round(playerSelection, computerChoise);
+        playerScoreEl.innerText = playerPoints;
+        computerScoreEl.innerText = computerPoints;
+        game();
     }
     else if (target.id === 'rock') {
         playerSelection = "rock";
         computerChoise = getComputerChoice();
-        return roundResult.innerText = round(playerSelection, computerChoise);
+        roundResult.innerText = round(playerSelection, computerChoise);
+        playerScoreEl.innerText = playerPoints;
+        computerScoreEl.innerText = computerPoints;
+        game();
     }
     else {
         playerSelection = "scissors";
         computerChoise = getComputerChoice();
-        return roundResult.innerText = round(playerSelection, computerChoise);
+        roundResult.innerText = round(playerSelection, computerChoise);
+        playerScoreEl.innerText = playerPoints;
+        computerScoreEl.innerText = computerPoints;
+        game();
     }
 });
 
+const finalResult = document.createElement("span");
+
 function game() {
-    return playerPoints > computerPoints ? "Jogador venceu!" : "Computador venceu."
-
-    console.log("escolha do PLAYER: " + playerSelection);
-    console.log("escolha do COMPUTADOR: " + computerChoise);
-    console.log("quem ganhou o ROUND: " + roundWinner);
+    if (playerPoints === 5 || computerPoints === 5) {
+        finalResult.innerText = playerPoints > computerPoints ? "Jogador venceu!" : "Computador venceu."
+        container.appendChild(finalResult);
+    }
+    // console.log("escolha do PLAYER: " + playerSelection);
+    // console.log("escolha do COMPUTADOR: " + computerChoise);
+    // console.log("quem ganhou o ROUND: " + roundWinner);
 }
-
-container.appendChild(roundResult);
-container.appendChild(currentScores);
