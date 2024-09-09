@@ -100,17 +100,34 @@ const finalResult = document.createElement("span");
 
 function game() {
     if (playerPoints === 5 || computerPoints === 5) {
-        finalResult.innerText = playerPoints > computerPoints ? "Jogador venceu!" : "Computador venceu."
-        container.appendChild(finalResult);
+        openModal();
     }
     // console.log("escolha do PLAYER: " + playerSelection);
     // console.log("escolha do COMPUTADOR: " + computerChoise);
     // console.log("quem ganhou o ROUND: " + roundWinner);
 }
 
-function endGame(){
+const modal = document.querySelector(".modal-container");
+
+function openModal() {
+    finalResult.innerText = playerPoints > computerPoints ? "Jogador venceu!" : "Computador venceu."
+    container.appendChild(finalResult);
+    modal.classList.add("active");
+}
+
+const btnEndGame = document.querySelector("#btn-endGame");
+
+btnEndGame.addEventListener('click', () => {
+    endGame();
+});
+
+function endGame() {
     playerPoints = 0;
     computerPoints = 0;
     empate = 0;
+    playerScoreEl.innerText = playerPoints;
+    computerScoreEl.innerText = computerPoints;
     roundResult.innerText = "-";
+    container.removeChild(finalResult);
+    modal.classList.remove("active");
 }
