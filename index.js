@@ -102,16 +102,13 @@ function game() {
     if (playerPoints === 5 || computerPoints === 5) {
         openModal();
     }
-    // console.log("escolha do PLAYER: " + playerSelection);
-    // console.log("escolha do COMPUTADOR: " + computerChoise);
-    // console.log("quem ganhou o ROUND: " + roundWinner);
 }
 
 const modal = document.querySelector(".modal-container");
 
 function openModal() {
     finalResult.innerText = playerPoints > computerPoints ? "Jogador venceu!" : "Computador venceu."
-    container.appendChild(finalResult);
+    modal.appendChild(finalResult);
     modal.classList.add("active");
 }
 
@@ -128,6 +125,6 @@ function endGame() {
     playerScoreEl.innerText = playerPoints;
     computerScoreEl.innerText = computerPoints;
     roundResult.innerText = "-";
-    container.removeChild(finalResult);
+    modal.removeChild(finalResult);
     modal.classList.remove("active");
 }
