@@ -106,9 +106,10 @@ function game() {
 
 const modal = document.querySelector(".modal-container");
 
+
 function openModal() {
     finalResult.innerText = playerPoints > computerPoints ? "Jogador venceu!" : "Computador venceu."
-    modal.appendChild(finalResult);
+    modal.insertBefore(finalResult, btnEndGame);
     modal.classList.add("active");
 }
 

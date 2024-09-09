@@ -97,6 +97,11 @@ button:hover {
     border-radius: 5px;
 }
 
+#btn-endGame {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
 footer {
     position: absolute;
     bottom: 0;
